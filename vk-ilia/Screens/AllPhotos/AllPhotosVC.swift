@@ -1,9 +1,3 @@
-//
-//  AllPhotosVC.swift
-//  vk-ilia
-//
-//  Created by Ilia Zakharov on 28.05.2022.
-//
 
 import Foundation
 import UIKit
@@ -29,18 +23,6 @@ class AllPhotosVC: UIViewController {
     
     private let idCollection = "idCollection"
     
-//    //Передача через инициализтор - способ 1 (основной)
-//    init(userId: Int) {
-//        self.userId = userId
-//
-//        //Designated initializer - вызвать родительский инициализатор
-//        super.init(nibName: nil, bundle: nil)
-//    }
-    
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    
     private let photoLabel: UILabel = {
         let view = UILabel()
         view.text = "Photos"
@@ -56,15 +38,10 @@ class AllPhotosVC: UIViewController {
         setupViews()
         setupConstraints()
         setDelegates()
-//        setDelegates()
         
         photosAPIALL.getPhotos(userId: userIdALL) { photos in
-            //print(photos)
             self.photosALL = photos
             self.myCollectionView.reloadData()
-//            for photo in photos {
-//                print(photo.sizes?.first?.url)
-//            }
         }
         print(photosALL.count)
     }

@@ -1,20 +1,11 @@
-//
-//  FriendCollectionViewCell.swift
-//  vk-ilia
-//
-//  Created by Ilia Zakharov on 07.05.2022.
-//
 
 import UIKit
 
 final class FriendCollectionViewCell: UICollectionViewCell {
     
-    //Объявление кложура
     var onGroupTapAction: ( (Int)->() )?
     var onPhotoTapAction: ( (Int)->() )?
     
-    
-    //
     private var friend: Friend?
     
     private let backgroundCell: UIView = {
@@ -95,7 +86,6 @@ final class FriendCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Public
     
-    //wildcard
     func configure(_ friend: Friend) {
         
         self.friend = friend
@@ -113,7 +103,6 @@ final class FriendCollectionViewCell: UICollectionViewCell {
     @objc private func groupsTappedAction() {
         print("TAPPED GROUPS!!!")
         
-        //Вызов кложура
         onGroupTapAction?(friend?.id ?? 0)
 
     }

@@ -1,9 +1,3 @@
-//
-//  FriendTableView.swift
-//  vk-ilia
-//
-//  Created by Ilia Zakharov on 06.05.2022.
-//
 
 import Foundation
 import UIKit
@@ -99,15 +93,6 @@ extension PhotoTableViewCell {
             photoNumberLabel.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 5),
         
         ])
-        
-        // при скроле наверх не отображается
-//        NSLayoutConstraint.activate([
-//            lineView.topAnchor.constraint(equalTo: backgroundCell.bottomAnchor, constant: 0),
-//            lineView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-//            lineView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
-//            lineView.heightAnchor.constraint(equalToConstant: 3)
-//
-//        ])
     }
     
 }

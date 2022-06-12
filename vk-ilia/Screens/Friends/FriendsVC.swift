@@ -1,9 +1,3 @@
-//
-//  FriendsViewController.swift
-//  vk-ilia
-//
-//  Created by Artur Igberdin on 06.04.2022.
-//
 
 import UIKit
 
@@ -13,15 +7,6 @@ final class FriendsVC: UIViewController {
     private let friendsAPI = FriendsAPI()
     
     private var friends: [Friend] = []
-    
-    //Основной способ создания UI контролов - если нет кастомных классов под это дело
-//    private lazy var tableView: UITableView = {
-//        let tableView = UITableView()
-//        tableView.dataSource = self
-//        tableView.delegate = self
-//        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-//        return tableView
-//    }()
     
     private let myCollectionView: UICollectionView = {
         
@@ -39,11 +24,7 @@ final class FriendsVC: UIViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        navigationItem.title = "Друзья"
-//        navigationItem.leftBarButtonItem = nil// UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        
-        
+
         setupViews()
         setupConstraints()
         setDelegates()
@@ -75,8 +56,7 @@ final class FriendsVC: UIViewController {
     
     //MARK: - Private methods
     private func setupViews() {
-//        view.addSubview(tableView)
-        
+
         view.backgroundColor = .white
         view.addSubview(myCollectionView)
         myCollectionView.register(FriendCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
@@ -88,31 +68,16 @@ final class FriendsVC: UIViewController {
     }
     
     private func setupConstraints() {
-        
-//        tableView.translatesAutoresizingMaskIntoConstraints = false
-//
-//        NSLayoutConstraint.activate([
-//            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-//            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-//            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-//            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
-//        ])
-        
+
         NSLayoutConstraint.activate([
             myCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
             myCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             myCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             myCollectionView.heightAnchor.constraint(equalToConstant: 500)
-            //collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100)
         ])
     }
     
     //MARK: - Actions
-    
-    private func showFriendPhotosAction(index: Int) {
-        
-        //Переход на новый контроллер FriendsFavoritePhotoVC
-    }
 }
 
 extension FriendsVC: UICollectionViewDataSource {
@@ -127,13 +92,9 @@ extension FriendsVC: UICollectionViewDataSource {
         guard let cell = myCollectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? FriendCollectionViewCell else { return UICollectionViewCell() }
         
         let friend: Friend = friends[indexPath.row]
-
-        //Ответственность на расстановку свойств ячейки отдали в ячейку
         cell.configure(friend)
         
-        //Контроллер -> tableview -> cell -> кложур
         cell.onGroupTapAction = { userId in
-            
             
             let groupsVC = GroupsVC()
             
@@ -157,23 +118,6 @@ extension FriendsVC: UICollectionViewDataSource {
 extension FriendsVC: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            // теперь не нужно т.к. переход через кнопки
-//        showFriendPhotosAction(index: indexPath.row)
-//
-//        print("Нажатие ячейки = ", indexPath.row)
-//
-//        let friend: Friend = friends[indexPath.row]
-//        //print(friend.id)
-//
-//        //Передача данных через инициализатор
-//        //let photosVC = PhotosVC(userId: friend.id)
-//
-//        //Переда данных через внутреннюю переменную
-//        let photosVC = PhotosVC()
-//        photosVC.userId = friend.id
-//
-//        navigationController?.pushViewController(photosVC, animated: true)
-        
     }
     
 }
@@ -183,47 +127,3 @@ extension FriendsVC: UICollectionViewDelegateFlowLayout {
         CGSize(width: myCollectionView.frame.width, height: myCollectionView.frame.height / 3.8)
     }
 }
-////MARK: - UITableViewDataSource
-//extension FriendsVC: UITableViewDataSource {
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return friends.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//
-//        //ccылка на адрес
-//        var cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-//        cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
-//
-//        let friend: Friend = friends[indexPath.row]
-//
-//        cell.textLabel?.text = "\(friend.firstName ?? "")" + " " + "\(friend.lastName ?? "")"
-//        cell.detailTextLabel?.text = "\(friend.city?.title ?? "")"
-//
-//        return cell
-//    }
-//}
-//
-////MARK: - UITableViewDataSource
-//extension FriendsVC: UITableViewDelegate {
-//
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//        showFriendPhotosAction(index: indexPath.row)
-//
-//        print("Нажатие ячейки = ", indexPath.row)
-//
-//        let friend: Friend = friends[indexPath.row]
-//        print(friend.id)
-//
-//        //Передача данных через инициализатор
-//        //let photosVC = PhotosVC(userId: friend.id)
-//
-//        //Переда данных через внутреннюю переменную
-//        let photosVC = PhotosVC()
-//        photosVC.userId = friend.id
-//
-//        navigationController?.pushViewController(photosVC, animated: true)
-//    }
-//}
