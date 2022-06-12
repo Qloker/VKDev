@@ -1,10 +1,3 @@
-//
-//  GroupsVC.swift
-//  vk-ilia
-//
-//  Created by Ilia Zakharov on 08.05.2022.
-//
-
 
 import UIKit
 
@@ -55,8 +48,6 @@ class GroupsVC: UIViewController {
         view.addSubview(myCollectionView)
         myCollectionView.register(GroupsCollectionViewCell.self, forCellWithReuseIdentifier: cellId2)
         
-        
-        
         groupsAPI.getGroups(userId: userId) { groups in
             
             self.groups = groups
@@ -105,8 +96,7 @@ extension GroupsVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = myCollectionView.dequeueReusableCell(withReuseIdentifier: cellId2, for: indexPath) as? GroupsCollectionViewCell else { return UICollectionViewCell() }
-        
-        // раскладка по строкам, каждой ячейке своя строка
+
         let group: Group = groups[indexPath.row]
         
         cell.groupConfig(group)
@@ -117,8 +107,6 @@ extension GroupsVC: UICollectionViewDataSource {
     
     
 }
-
-// установка размера ячейки
 
 extension GroupsVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

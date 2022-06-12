@@ -1,47 +1,22 @@
-//
-//  ViewController.swift
-//  vk-ilia
-//
-//  Created by Artur Igberdin on 06.04.2022.
-//
 
 import UIKit
 import WebKit
 
 class AuthVC: UIViewController, WKNavigationDelegate {
-
-    //Глобальная область видимости контроллера
     
-    //VC -> WebView (держат друг друга)
     @IBOutlet weak var webView: WKWebView! {
         didSet {
-            //WebView -> VC
             webView.navigationDelegate = self
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //Внутреннаяя область видимости функции
         authorizeToAPI()
     }
- /*
-https
-  ://oauth.vk.com
-  /authorize
-  
-  ?client_id=1
-  &display=page
-  &redirect_uri=http://example.com/callback
-  &scope=friends
-  &response_type=token
-  &v=5.131
-  &state=123456
-  */
+    
     func authorizeToAPI() {
-        
-        //Конструктор URL
+
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "oauth.vk.com"
@@ -74,31 +49,8 @@ https
         
         print(navigationResponse.response.url as Any)
         
-        /*
-         Optional(https://oauth.vk.com/blank.html#access_token=173f86190c1071a2816e3be4658775f372e4fbf1b2a4c3a88a6a29adad0336e2b130a9aaaf3944ca1609d&expires_in=86400&user_id=223761261)
-         
-         fragment - означает кусок url после #
-         access_token=173f86190c1071a2816e3be4658775f372e4fbf1b2a4c3a88a6a29adad0336e2b130a9aaaf3944ca1609d&expires_in=86400&user_id=223761261)
-         
-         разбили на &
-         access_token=173f86190c1071a2816e3be4658775f372e4fbf1b2a4c3a88a6a29adad0336e2b130a9aaaf3944ca1609d
-         expires_in=86400
-         user_id=223761261
-         
-         разбили на =
-         [access_token,
-         173f86190c1071a2816e3be4658775f372e4fbf1b2a4c3a88a6a29adad0336e2b130a9aaaf3944ca1609d
-         expires_in,
-         86400,
-         user_id,
-         223761261]
-         
-         */
-        
         print(url.fragment as Any)
-        
-        
-        
+
         let paramsDictionary = url
             .fragment?
             .components(separatedBy: "&")

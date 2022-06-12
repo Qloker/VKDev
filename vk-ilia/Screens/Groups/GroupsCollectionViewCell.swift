@@ -1,20 +1,8 @@
-//
-//  GroupsCollectionViewCell.swift
-//  vk-ilia
-//
-//  Created by Ilia Zakharov on 17.05.2022.
-//
 
 import UIKit
 import SDWebImage
 final class GroupsCollectionViewCell: UICollectionViewCell {
-    
-    //Объявление кложура
-//    var onGroupTapAction: ( (Int)->() )?
-//    var onPhotoTapAction: ( (Int)->() )?
-    
-    
-    //
+
     private var group: Group?
     
     private let backgroundCell: UIView = {
@@ -58,8 +46,6 @@ final class GroupsCollectionViewCell: UICollectionViewCell {
         label.text = "City"
         label.textColor = .green
         label.numberOfLines = 2
-//        label.adjustsFontSizeToFitWidth = true
-//        label.minimumScaleFactor = 0.5
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -71,28 +57,8 @@ final class GroupsCollectionViewCell: UICollectionViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
-    
-
-    
-    //MARK: - Public
-    
-    //wildcard
-//    func configure(_ friend: Friend) {
-//
-//        self.friend = friend
-//
-//        firstNameLabel.text = "\(friend.firstName ?? "")"
-//        secondNameLabel.text = "\(friend.lastName ?? "")"
-//        cityLabel.text = "\(friend.city?.title ?? "")"
-//    }
-//
-    
     //MARK: - Actions
-
-    
-   
-    
+ 
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -116,8 +82,7 @@ final class GroupsCollectionViewCell: UICollectionViewCell {
         addSubview(itemDescriptionLabel)
         
     }
-    
-    // передача на VC
+
     func groupConfig(_ group: Group) {
         
         self.group = group
@@ -128,9 +93,6 @@ final class GroupsCollectionViewCell: UICollectionViewCell {
         
         let photoGroupUrl = URL(string: group.photo200)
         groupPhotoView.sd_setImage(with: photoGroupUrl, placeholderImage: UIImage(named: "netflix"))
-//        let photoUrl = URL(string: photo.sizes?.first?.url ?? "")
-//
-//        cell.photoView.sd_setImage(with: photoUrl, placeholderImage: UIImage(named: "default"))
         
     }
     
